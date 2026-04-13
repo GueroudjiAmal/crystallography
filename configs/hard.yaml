@@ -1,0 +1,41 @@
+data:
+  beam_center:
+  - 128
+  - 128
+  difficulty: hard
+  image_size: 256
+  imbalanced_hit_rate: 0.1
+  n_test: 100
+  n_test_imbalanced: 100
+  n_train: 200
+  n_val: 50
+  output_dir: data/synthetic_hard
+evaluation:
+  figures_dir: outputs/figures_hard
+peakfinder8:
+  max_pix_count: 200
+  max_res: 115
+  min_adc: 50.0
+  min_pix_count: 2
+  min_res: 10
+  min_snr: 5.0
+  n_peaks_threshold: 3
+  n_sigma_clip_iterations: 5
+training:
+  batch_size: 16
+  checkpoint_dir: outputs/checkpoints_hard
+  mixed_precision: false
+  num_workers: 0
+  patience: 10
+  phase1_epochs: 5
+  phase1_lr: 0.001
+  phase2_epochs: 10
+  phase2_lr: 0.0001
+  warmup_epochs: 2
+  weight_decay: 0.05
+vit:
+  in_chans: 1
+  input_size: 224
+  model_name: vit_tiny_patch16_224
+  num_classes: 2
+  pretrained: true

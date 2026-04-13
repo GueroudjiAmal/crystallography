@@ -1,0 +1,50 @@
+# ============================================================
+# Default configuration for SFX Hit Finder PoC
+# ============================================================
+
+data:
+  image_size: 512
+  beam_center: [256, 256]
+  # Dataset sizes (balanced hit/miss unless noted)
+  n_train: 8000
+  n_val: 1000
+  n_test: 2000
+  n_test_imbalanced: 2000
+  imbalanced_hit_rate: 0.1
+  difficulty: "medium"   # easy, medium, hard, very_hard
+  output_dir: "data/synthetic"
+
+peakfinder8:
+  min_snr: 6.0
+  min_pix_count: 2
+  max_pix_count: 200
+  min_adc: 50.0
+  min_res: 20
+  max_res: 240
+  n_sigma_clip_iterations: 5
+  n_peaks_threshold: 15
+
+vit:
+  model_name: "vit_small_patch16_224"
+  pretrained: true
+  in_chans: 1
+  num_classes: 2
+  input_size: 224
+
+training:
+  # Phase 1: head-only
+  phase1_epochs: 10
+  phase1_lr: 1.0e-3
+  # Phase 2: full fine-tuning
+  phase2_epochs: 40
+  phase2_lr: 1.0e-4
+  weight_decay: 0.05
+  warmup_epochs: 5
+  batch_size: 32
+  patience: 10
+  mixed_precision: true
+  num_workers: 4
+  checkpoint_dir: "outputs/checkpoints"
+
+evaluation:
+  figures_dir: "outputs/figures"
